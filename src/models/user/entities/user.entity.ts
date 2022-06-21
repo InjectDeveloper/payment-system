@@ -13,4 +13,7 @@ export class User {
 
   @Column({nullable: true, default: ""})
   public deposit_data: string
+
+  @Column({nullable: true, default: 0})
+  public deposit_sum: number
 }
