@@ -11,6 +11,6 @@ export class User {
   @Column({default: 0})
   public balance: number
 
-  @Column()
+  @Column({nullable: true, default: ""})
   public deposit_data: string
 }
