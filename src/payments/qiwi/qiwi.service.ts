@@ -12,7 +12,7 @@ export class QiwiService {
   ) {}
 
   async createDeposit(createDepositDto) {
-    const comment = await this.userService.createDeposit(createDepositDto.sum, createDepositDto.userId)
+    const comment = await this.userService.createDeposit(createDepositDto.sum, createDepositDto.userId, this.generateComment().toString())
     return {
       "sum": createDepositDto.sum,
       "comment": comment
@@ -29,6 +29,11 @@ export class QiwiService {
       this.userService.clearDepositInfo(user.id)
     }
     return payments || false
+  }
+
+  private generateComment() {
+    let rand = 1000000 - 0.5 + Math.random() * (9999999 - 1000000 + 1);
+    return Math.round(rand);
   }
 
 }

@@ -17,10 +17,10 @@ export class UserService {
     return await this.usersRepo.findOne({ where: {id: id} })
   }
 
-  async createDeposit(sum, userId) {
+  async createDeposit(sum, userId, deposit_data) {
     let user = await this.usersRepo.findOne({ where: {id: userId} })
     user.deposit_sum = sum
-    user.deposit_data = this.generateComment().toString()
+    user.deposit_data = deposit_data
     await this.usersRepo.save(user)
 
     return user.deposit_data
